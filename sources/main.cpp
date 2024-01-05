@@ -1,38 +1,28 @@
-#include "global_includes.h"
+#include "global_stuff.h"
 #include "drawing.h"
 #include "speicher.h"
+#include "button.h"
 
-#define SCREEN_WIDTH (1600)
-#define SCREEN_HEIGHT (1200)
 
-#define WINDOW_TITLE "Window title 42"
-#define MAX_INPUT_CHARS     9
+
 
 int main(void)
 {
-    drawing_interface dr_in_instance;
-    speicher speicher_obj;
+    
+    int zahl = 0;
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
     SetTargetFPS(60);
-
-    Texture2D texture = LoadTexture(ASSETS_PATH"test.png"); // Check README.md for how this works
-    dr_in_instance.beispielfunktion();
-
+    drawing_interface page_1_obj;
+    
+    Vector2 mouse_position = { -1.0f,-1.0f }; 
+    save_button save_button_obj(200, 100, 300, 400, "Speichern");
+    
     while (!WindowShouldClose())
     {
-        BeginDrawing();
-        
-        ClearBackground(RAYWHITE);
-
-        const int texture_x = SCREEN_WIDTH / 2 - texture.width / 2;
-        const int texture_y = SCREEN_HEIGHT / 2 - texture.height / 2;
-        DrawTexture(texture, texture_x, texture_y, WHITE);
-
-        const char* text = "OMG! IT WORKS!";
-        const Vector2 text_size = MeasureTextEx(GetFontDefault(), text, 20, 1);
-        DrawText(text, SCREEN_WIDTH / 2 - text_size.x / 2, texture_y + texture.height + text_size.y + 10, 20, BLACK);
-
-        EndDrawing();
+        mouse_position = GetMousePosition();
+        //page_1.update();
+        page_1_obj.draw();
+        save_button_obj.draw();
     }
 
     CloseWindow();

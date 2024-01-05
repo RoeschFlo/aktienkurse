@@ -1,6 +1,6 @@
 #ifndef SPEICHER_H
 #define SPEICHER_H
-#include "global_includes.h"
+#include "global_stuff.h"
 
 
 class speicher {

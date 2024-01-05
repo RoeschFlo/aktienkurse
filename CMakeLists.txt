@@ -23,11 +23,15 @@ FetchContent_MakeAvailable(raylib)
 # Manually listing source files
 set(PROJECT_SOURCES
     sources/main.cpp
-    sources/global_includes.h
+    "sources/global_stuff.h"
     sources/drawing.h
     sources/drawing.cpp
     sources/speicher.h 
-    sources/speicher.cpp 
+    sources/speicher.cpp
+    sources/reactions.cpp
+    sources/reactions.h
+    sources/button.h 
+    sources/button.cpp
     
     # Add more files here, if necessary
 )
