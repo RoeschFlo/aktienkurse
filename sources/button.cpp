@@ -16,6 +16,7 @@ void button::draw() {
 		DrawRectangle(pos_x, pos_y, width, height, GRAY);
 	}
 	DrawText(label, pos_x + 10, pos_y + 10, 20, DARKGRAY);
+
 	
 }
 
@@ -28,4 +29,10 @@ bool button::isClicked()  {
 bool button::isHovering() {
 	return CheckCollisionPointRec(GetMousePosition(), { static_cast<float>(pos_x), static_cast<float>(pos_y),
 												  static_cast<float>(width), static_cast<float>(height) });
+}
+
+void save_button::update() {
+	if (button::isClicked()) {
+		printf("Update");
+	}
 }

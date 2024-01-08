@@ -11,7 +11,7 @@ public:
 	void draw();
 	bool isClicked();
 	bool isHovering();
-	
+
 private:
 	int width = 0, height = 0, pos_x = 0, pos_y = 0;
 	const char *label= ""; 
@@ -24,7 +24,7 @@ public:
 		button(width, height, pos_x, pos_y, label) {
 
 	}
-
+	void update();
 };
 
 
