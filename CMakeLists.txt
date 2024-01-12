@@ -36,6 +36,12 @@ set(PROJECT_SOURCES
     # Add more files here, if necessary
 )
 
+# Locate MySQL Connector library
+set(CONNECTOR_PATH "C:/Program Files/MySQL/MySQL_Connector8.2" )
+
+#include MySQL header
+include_directories("${CONNECTOR_PATH}/include/mysql" )
+
 # Declaring our executable
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 
@@ -48,21 +54,16 @@ target_link_libraries(${PROJECT_NAME} PRIVATE raylib
    # winmm
    glfw
 )
-# Setze den Pfad zu den DLL-Dateien
-set(MYSQL_LIB_DIR "${CMAKE_CURRENT_LIST_DIR}/database/lib64/vs14")
 
-# Füge das Verzeichnis mit den DLLs zum Ausführungsverzeichnis hinzu (optional, abhängig von deinen Anforderungen)
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/vs14")
-
-# Verlinke die DLLs mit dem ausführbaren Ziel
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    ${MYSQL_LIB_DIR}/libcrypto.lib
-    ${MYSQL_LIB_DIR}/libssl.lib
-    ${MYSQL_LIB_DIR}/mysqlcppconn.lib
-    ${MYSQL_LIB_DIR}/mysqlcppconn8.lib
+# Link against MySQL Connector library
+target_link_libraries( ${PROJECT_NAME} PRIVATE 
+    "${CONNECTOR_PATH}/lib64/vs14/libcrypto.lib"
+    "${CONNECTOR_PATH}/lib64/vs14/libssl.lib"
+    "${CONNECTOR_PATH}/lib64/vs14/mysqlcppconn.lib"
+    "${CONNECTOR_PATH}/lib64/vs14/mysqlcppconn8.lib"
     
-    # Füge hier weitere DLLs hinzu, wenn vorhanden
-)
+
+    )
 
 # Setting ASSETS_PATH
 target_compile_definitions(${PROJECT_NAME} PUBLIC ASSETS_PATH="${CMAKE_CURRENT_SOURCE_DIR}/assets/") # Set the asset path macro to the absolute path on the dev machine
