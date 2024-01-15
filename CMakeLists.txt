@@ -6,8 +6,19 @@ set(SQL_API_PATH ${CMAKE_CURRENT_LIST_DIR}/external/mysql_connector_c)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_LIST_DIR}/out)
 
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp )
 
 
-#exe wird mit libary verknüpft
+#exe wird mit mysql gelinkt
 target_link_libraries(${PROJECT_NAME} ${SQL_API_PATH}/lib/libmysql.lib)
+
+
+
+#exe wird mit raylib gelinkt
+target_link_libraries(${PROJECT_NAME}
+    ${CMAKE_CURRENT_LIST_DIR}/external/raylib/lib/libraylib.a
+    
+)
+
+target_link_libraries(${PROJECT_NAME}     winmm
+)
