@@ -1,16 +1,10 @@
-#include <iostream>
+
 #include "../include/my_includes.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "../include/gui.h"
+/*Die Hierachie ist:
+Es gibt eine GUI mit einer Seite, welche mehrere Bedienelemente haben können
+Mehrer Seiten kommt später noch*/
 
-// int main(int argc, char **argv)
-// {
-
-//   printf("MySQL client version: %s\n", mysql_get_client_info());
-
-//   exit(0);
-//   return 42;
-// }
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -19,38 +13,39 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    Gui_Namespace::Gui myGui;
+     printf("MySQL client version: %s\n", mysql_get_client_info());
 
-    Cppwrapper::InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    raylib_namespace::InitWindow(2000,1600,"42");
 
-    Cppwrapper::SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    raylib_namespace::SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
+   
+
 
     // Main game loop
-    while (!Cppwrapper::WindowShouldClose())    // Detect window close button or ESC key
+    while (!raylib_namespace::WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
         // TODO: Update your variables here
         //----------------------------------------------------------------------------------
-
+        
         // Draw
         //----------------------------------------------------------------------------------
-        Cppwrapper::BeginDrawing();
+        raylib_namespace::BeginDrawing();
 
-            Cppwrapper::ClearBackground(Cppwrapper::RAYWHITE);
+            raylib_namespace::ClearBackground(raylib_namespace::RAYWHITE);
 
-            Cppwrapper::DrawText("Congrats! You created your first window!", 190, 200, 20,
-                     Cppwrapper::LIGHTGRAY);
-
-        Cppwrapper::EndDrawing();
+            myGui.draw_all();
+            
+        raylib_namespace::EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    Cppwrapper::CloseWindow();        // Close window and OpenGL context
+    raylib_namespace::CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 
     return 0;
