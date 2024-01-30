@@ -1,11 +1,13 @@
 #include "../include/button.h"
 namespace Gui_Namespace{
-button::button(int width, int height, int pos_x, int pos_y, const char *label) :
+button::button(int width, int height, int pos_x, int pos_y, const char *label,
+				 void(*ptr)(std::string)) :
 	width(width),
 	height(height),
 	pos_x(pos_x),
 	pos_y(pos_y),
-	label(label)
+	label(label),
+	action_ptr_m(ptr)
 {}
 
 void button::draw() {
@@ -33,9 +35,9 @@ bool button::isHovering() {
 												  static_cast<float>(width), static_cast<float>(height) });
 }
 
-void save_button::update() {
+void button::polling() {
 	if (button::isClicked()) {
-		printf("Update");
+		 action_ptr_m("Beispieltext");
 	}
 }
 }

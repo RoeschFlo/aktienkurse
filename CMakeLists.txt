@@ -12,7 +12,8 @@ add_executable(${PROJECT_NAME}
                     src/main.cpp
                     src/gui.cpp
                     src/button.cpp 
-                    src/textbox.cpp)
+                    src/textbox.cpp
+                    src/actions.cpp)
 
 
 #exe wird mit mysql gelinkt

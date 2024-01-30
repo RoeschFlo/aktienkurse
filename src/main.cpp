@@ -13,6 +13,7 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
+    Gui_Namespace::prt_table prt_table_obj;
     Gui_Namespace::Gui myGui;
      printf("MySQL client version: %s\n", mysql_get_client_info());
 
@@ -28,7 +29,7 @@ int main(void)
     {
         // Update
         //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
+        myGui.update_all();
         //----------------------------------------------------------------------------------
         
         // Draw

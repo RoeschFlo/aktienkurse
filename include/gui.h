@@ -6,6 +6,7 @@ update_all und draw_all*/
 #include "../include/my_includes.h"
 #include "../include/button.h"
 #include "../include/textbox.h"
+#include "../include/actions.h"
 
 
 
@@ -16,6 +17,7 @@ namespace Gui_Namespace{
         void update_all();
         void draw_all();
 
+    
     button button_obj;
     textbox textbox_obj;
     

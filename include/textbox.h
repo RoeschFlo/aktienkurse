@@ -13,8 +13,10 @@ namespace Gui_Namespace{
             void update();
 
         private:
-            int width = 0, height = 0, pos_x = 0, pos_y = 0;
-	        const char *label= "Place your mouse over input box";
+            int width_m = 0, height_m = 0, pos_x_m = 0, pos_y_m = 0;
+	        const char *label_m= "Place your mouse over input box";
+            bool mouseOnText_m = false;
+            raylib_namespace::Rectangle textbox_m;
     };
 }
 
