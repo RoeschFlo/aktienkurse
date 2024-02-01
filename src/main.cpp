@@ -29,13 +29,32 @@ int main(void)
     Gui_Namespace::Eingabe_feld eingabe_feld_obj (400, 40, 200, 800, "Eingabe");
     Gui_Namespace::Speicher_knopf speicher_knopf_obj(200, 40, 1500, 800,
         "Speichern in DB" );
-    // Diese String Variable soll durch mysql ersetzt werden
+    
     std::string simulierte_DB = "";
     std::string* prt_to_sim_DB = &simulierte_DB;
     
-    
-    //--------------------------------------------------------------------------------------
-   
+    //der String wird aus der Database geladen
+    std::string filename = "peristenter_speicher.txt";
+    std::ifstream file(filename);
+
+    if (file.is_open()) {
+        std::string data;
+
+        // Read up to 9 characters
+        char c;
+        int count = 0;
+        while (file.get(c) && count < 9 && c != '\n') {
+            data += c;
+            count++;
+        }
+
+        file.close();
+        simulierte_DB = data;
+    }
+    else
+    {
+        printf("Error couldnt save!"); return 1;
+    }
 
 
     // Main game loop
@@ -54,7 +73,8 @@ int main(void)
         /*Durch drücken des Eingabeknopfes werden Werte von Eingabefeld in DataBase über-
         tragen */
         if(speicher_knopf_obj.isClicked_m()){
-            simulierte_DB = eingabe_feld_obj.get_eingabe_m();
+            speicher_knopf_obj.in_DB_schreiben_m(
+                eingabe_feld_obj.get_eingabe_m(),prt_to_sim_DB);
         }
 
 
@@ -77,6 +97,17 @@ int main(void)
     //--------------------------------------------------------------------------------------
     raylib_namespace::CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
+
+   
+    std::ofstream file2(filename);
+    if(file2.is_open()){
+        file2 << simulierte_DB;
+        file2.close();
+    }
+    else
+    {
+        printf("Error couldnt save!"); return 1;
+    }
 
     return 0;
 }

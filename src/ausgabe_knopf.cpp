@@ -8,6 +8,7 @@ Gui_Namespace::Ausgabe_knopf::Ausgabe_knopf(int width, int height,
 
 std::string Gui_Namespace::Ausgabe_knopf::aus_DB_lesen_m(std::string* text){
     ausgabe_text_m=*text;
-    printf("Ich habe folgendes aus DB gelesen: ", ausgabe_text_m.c_str());
+    printf("Ich habe folgendes aus DB gelesen: ");
+    printf( ausgabe_text_m.c_str()); printf("\n");
     return *text;
 }
