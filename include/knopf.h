@@ -12,11 +12,11 @@ namespace Gui_Namespace{
     public:
         Knopf(int width, int height, int pos_x, int pos_y, 
                     std::string label);
-        ~Knopf();
+        
 
-        void update();
-        bool isClicked();
-	    bool isHovering();
+        void update_m();
+        bool isClicked_m();
+	    bool isHovering_m();
 
     };
     

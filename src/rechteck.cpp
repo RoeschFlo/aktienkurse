@@ -8,4 +8,3 @@ Gui_Namespace::Rechteck::Rechteck(int width, int height,
         pos_y_m(pos_y),
         label_m(label) {}
 
-Gui_Namespace::Rechteck::~Rechteck(){}

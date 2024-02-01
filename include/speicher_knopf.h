@@ -11,9 +11,8 @@ namespace  Gui_Namespace{
     public:
         Speicher_knopf(int width, int height, int pos_x, int pos_y, 
                     std::string label);
-        ~Speicher_knopf();
         
-        std::string in_DB_schreiben();
+        void  in_DB_schreiben_m(std::string text, std::string* db_speicher);
         
 
     };    

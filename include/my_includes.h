@@ -13,7 +13,7 @@
 
 
 //Project includes
-
+#include "global_defines.h"
 
 #include <stdio.h>
 #include <stdlib.h>

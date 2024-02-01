@@ -12,10 +12,10 @@ namespace  Gui_Namespace{
     public:
         Ausgabe_knopf(int width, int height, int pos_x, int pos_y, 
                     std::string label);
-        ~Ausgabe_knopf();
         
-        std::string aus_DB_lesen();
-        std::string get_ausgabe_text_m ();
+        
+        std::string aus_DB_lesen_m(std::string* text);
+        
 
     };    
 }

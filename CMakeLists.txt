@@ -10,10 +10,14 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_LIST_DIR}/out)
 
 add_executable(${PROJECT_NAME} 
                     src/main.cpp
-                    src/gui.cpp
-                    src/button.cpp 
-                    src/textbox.cpp
-                    src/actions.cpp)
+                    src/ausgabe_feld.cpp
+                    src/ausgabe_knopf.cpp
+                    src/eingabe_feld.cpp
+                    src/knopf.cpp
+                    src/rechteck.cpp
+                    src/speicher_knopf.cpp
+)
+
 
 
 #exe wird mit mysql gelinkt
