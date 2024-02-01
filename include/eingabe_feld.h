@@ -12,6 +12,7 @@ namespace Gui_Namespace{
                             int pos_y, std::string label);
 
             void update_m ();
+            void draw();
             std::string get_eingabe_m();
         private:
             raylib_namespace::Rectangle rect_box_m;

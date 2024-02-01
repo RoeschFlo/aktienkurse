@@ -13,6 +13,50 @@ Gui_Namespace::Eingabe_feld::Eingabe_feld(int width, int height,
             framesCounter_m=0;
         };
 
+void Gui_Namespace::Eingabe_feld::draw(){
+    //Text wird gerendert
+    raylib_namespace::DrawText("PLACE MOUSE OVER INPUT BOX!", pos_x_m, 
+        pos_y_m + 40, 20, raylib_namespace::BLACK );
+    //Eingabe Box an sich wird gerendert
+    raylib_namespace::DrawRectangleRec(rect_box_m, 
+        raylib_namespace::LIGHTGRAY);
+    
+    if (mouseOnText_m) 
+    {    //Boxrand wird rot hevorgehoben wenn Maus auf Text
+        raylib_namespace::DrawRectangleLines(
+            (int)rect_box_m.x, (int)rect_box_m.y, (int)rect_box_m.width, 
+            (int)rect_box_m.height, raylib_namespace::RED);
+    }
+    else 
+    {   //Wenn maus nicht auf Text -> Boxrand Grau
+        raylib_namespace::DrawRectangleLines((int)rect_box_m.x, 
+            (int)rect_box_m.y, (int)rect_box_m.width, (int)rect_box_m.height, 
+            raylib_namespace::DARKGRAY);
+    }
+    // Die eingegebene Info an sich wird gerendert
+    raylib_namespace::DrawText(name_m, (int)rect_box_m.x + 5, 
+        (int)rect_box_m.y + 8, 40, raylib_namespace::MAROON);
+
+    // Anzahl der eingegebenen Buchstaben wird rerendert
+    raylib_namespace::DrawText(raylib_namespace::TextFormat(
+        "INPUT CHARS: %i/%i", letterCount_m, MAX_INPUT_CHARS), pos_x_m, 
+        pos_y_m-20, 20, raylib_namespace::DARKGRAY);
+
+    if (mouseOnText_m)
+    {
+        if (letterCount_m < MAX_INPUT_CHARS)       
+        {
+            // Draw blinking underscore char
+            if (((framesCounter_m/20)%2) == 0) DrawText("_", (int)rect_box_m.x +
+                8 + raylib_namespace::MeasureText(name_m, 40), (int)rect_box_m.y +
+                12, 40, raylib_namespace::MAROON);
+            }
+            // Wenn die Anzahl der max. möglichen Chars erreicht wurde
+             else raylib_namespace::DrawText("Press BACKSPACE to delete chars...",
+                (int)rect_box_m.x,(int)rect_box_m.y-40, 20, raylib_namespace::BLACK );
+    }    
+}
+
 void Gui_Namespace::Eingabe_feld::update_m(){
     if (raylib_namespace::CheckCollisionPointRec(
             raylib_namespace::GetMousePosition(), rect_box_m)) mouseOnText_m = true;
@@ -50,42 +94,7 @@ void Gui_Namespace::Eingabe_feld::update_m(){
 
     if  (mouseOnText_m) framesCounter_m++;
     else framesCounter_m = 0;
-
-    raylib_namespace::DrawText("PLACE MOUSE OVER INPUT BOX!", pos_x_m, 
-        pos_y_m + 40, 20, raylib_namespace::BLACK );
-
-    raylib_namespace::DrawRectangleRec(rect_box_m, 
-        raylib_namespace::LIGHTGRAY);
-
-    if (mouseOnText_m) raylib_namespace::DrawRectangleLines(
-        (int)rect_box_m.x, (int)rect_box_m.y, (int)rect_box_m.width, 
-        (int)rect_box_m.height, raylib_namespace::RED);
-
-    else raylib_namespace::DrawRectangleLines((int)rect_box_m.x, 
-            (int)rect_box_m.y, (int)rect_box_m.width, (int)rect_box_m.height, 
-            raylib_namespace::DARKGRAY);
-
-        raylib_namespace::DrawText(name_m, (int)rect_box_m.x + 5, 
-            (int)rect_box_m.y + 8, 40, raylib_namespace::MAROON);
-
-        raylib_namespace::DrawText(raylib_namespace::TextFormat(
-            "INPUT CHARS: %i/%i", letterCount_m, MAX_INPUT_CHARS), pos_x_m, 
-            pos_y_m-20, 20, raylib_namespace::DARKGRAY);
-
-        if (mouseOnText_m)
-        {
-            if (letterCount_m < MAX_INPUT_CHARS)
-            {
-                // Draw blinking underscore char
-                if (((framesCounter_m/20)%2) == 0) DrawText("_", (int)rect_box_m.x +
-                    8 + raylib_namespace::MeasureText(name_m, 40), (int)rect_box_m.y +
-                    12, 40, raylib_namespace::MAROON);
-                }
-                else raylib_namespace::DrawText("Press BACKSPACE to delete chars...",
-                    (int)rect_box_m.x,(int)rect_box_m.y-40, 20, raylib_namespace::BLACK );
-        }
-
-    
+   
 };
 
 std::string Gui_Namespace::Eingabe_feld::get_eingabe_m(){

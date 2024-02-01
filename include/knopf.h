@@ -13,9 +13,10 @@ namespace Gui_Namespace{
         Knopf(int width, int height, int pos_x, int pos_y, 
                     std::string label);
         
-
-        void update_m();
+        
+        void draw_m();
         bool isClicked_m();
+    private:
 	    bool isHovering_m();
 
     };

@@ -22,14 +22,14 @@ int main(void)
     // Initialization
     //--------------------------------------------------------------------------------------
     raylib_namespace::InitWindow(2000,1600,"42");
-    raylib_namespace::SetTargetFPS(60);               // Set our game to run at 10 frames-per-second
+    raylib_namespace::SetTargetFPS(60); // Set our game to run at 10 frames-per-second
     
     Gui_Namespace::Ausgabe_feld ausgabe_feld_obj (400,40, 200, 200, "Ausgabe");
     Gui_Namespace::Ausgabe_knopf ausgabe_knopf_obj (200, 40, 1500, 200, "Aus DB lesen");
     Gui_Namespace::Eingabe_feld eingabe_feld_obj (400, 40, 200, 800, "Eingabe");
     Gui_Namespace::Speicher_knopf speicher_knopf_obj(200, 40, 1500, 800,
         "Speichern in DB" );
-
+    // Diese String Variable soll durch mysql ersetzt werden
     std::string simulierte_DB = "";
     std::string* prt_to_sim_DB = &simulierte_DB;
     
@@ -41,23 +41,33 @@ int main(void)
     // Main game loop
     while (!raylib_namespace::WindowShouldClose())    // Detect window close button or ESC key
     {
-        raylib_namespace::BeginDrawing();
-        raylib_namespace::ClearBackground(raylib_namespace::RAYWHITE);
-
-        
+        //Zuerst werden die Objekte geupdatet
+        /*Update des Ausgabefeldes, durch drücken des Ausgabeknopfes, wird das
+        Ausgabefeld mit dem Wert des DataBase string neu beschrieben*/
+        if(ausgabe_knopf_obj.isClicked_m()){
+           ausgabe_feld_obj.update_m(ausgabe_knopf_obj.aus_DB_lesen_m(prt_to_sim_DB));        
+        }
+        /*Update des Eingabefeldes, neue Benutzereingaben werden dem eingabefeld hinzugefügt,
+        aber noch nicht angezeigt, das passiert in draw*/
         eingabe_feld_obj.update_m();
-        speicher_knopf_obj.update_m();
+
+        /*Durch drücken des Eingabeknopfes werden Werte von Eingabefeld in DataBase über-
+        tragen */
         if(speicher_knopf_obj.isClicked_m()){
             simulierte_DB = eingabe_feld_obj.get_eingabe_m();
         }
 
-        ausgabe_knopf_obj.update_m();
-        ausgabe_feld_obj.draw();
-        if(ausgabe_knopf_obj.isClicked_m()){
-           ausgabe_feld_obj.update_m(ausgabe_knopf_obj.aus_DB_lesen_m(prt_to_sim_DB));
-                
-        }
-        //ausgabe_feld_obj.update_m(prt_to_sim_DB);
+
+        //jetzt werden die Objekte gerendert
+        raylib_namespace::BeginDrawing();
+            raylib_namespace::ClearBackground(raylib_namespace::RAYWHITE);
+
+            //Alle Objekte werden gerendert
+            eingabe_feld_obj.draw();
+            speicher_knopf_obj.draw_m();
+            ausgabe_knopf_obj.draw_m();
+            ausgabe_feld_obj.draw();
+        
             
         raylib_namespace::EndDrawing();
         //----------------------------------------------------------------------------------

@@ -9,7 +9,7 @@ namespace Gui_Namespace{
                     std::string label);
         
 
-        public: //Todo: Zufgriff anpassen
+        
             void update_m(const std::string& ref_to_DB);
             void draw();
 

@@ -14,7 +14,7 @@ bool Gui_Namespace::Knopf::isHovering_m(){
     );
 };
 
-void Gui_Namespace::Knopf::update_m(){
+void Gui_Namespace::Knopf::draw_m(){
     
     if (Knopf::isHovering_m() == true) {
 		raylib_namespace::DrawRectangle(pos_x_m, pos_y_m, width_m,
